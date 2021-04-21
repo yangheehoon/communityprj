@@ -15,7 +15,7 @@
           <a class="nav-link" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/customer/clotheslist">코로나 지역</a>
+          <a class="nav-link" href="/map">코로나 지역</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/board/board_list">음성합성(tts)</a>
