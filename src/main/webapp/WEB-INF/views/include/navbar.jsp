@@ -18,7 +18,7 @@
           <a class="nav-link" href="/map">코로나 지역</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/board/board_list">음성합성(tts)</a>
+          <a class="nav-link" href="/tts">음성합성(tts)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/notice/list">게시판</a>
@@ -29,7 +29,7 @@
     	<c:if test="${sessionScope.member == null}">
     	<ul class="navbar-nav">
         <li class="nav-item">
-			<a href="/member/joinform" class="nav-link">회원가입</a>
+			<a href="/member/join" class="nav-link">회원가입</a>
 		</li>
 		<li class="nav-item">
 			<a href="/member/login" class="nav-link">로그인</a>
