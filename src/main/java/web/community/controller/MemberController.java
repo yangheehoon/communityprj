@@ -30,6 +30,9 @@ public class MemberController {
 	
 	@RequestMapping("/member/login")
 	public String login() {
+		
+			memberservice.ServiceLogin();
+		
 		return "member/login";
 	}
 	
