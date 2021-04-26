@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 </head>
 <body>
 <form action="/member/join" name="fm" onsubmit="return check()" style="width: 470px; padding: 30px; margin-left: auto; margin-right: auto;">
@@ -13,6 +14,7 @@
 		<label class="col-form-label-sm fw-bolder" style="width: 100%;">아이디</label>
 		<input type="text" name="id" id="userid" class="form-control form-control-sm" style="width: 63.6%; display: inline-block;">
 		<button type="button" id="idcheck" class="btn btn-primary">아이디 중복검사</button>
+		<span id="msg"></span>
 	</div>
 	<div class="mb-3">
 		<label class="col-form-label-sm fw-bolder">패스워드</label>
@@ -56,4 +58,23 @@
 
 
 </body>
+<script type="text/javascript">
+$("#idcheck").click(function(){
+	
+	var query = {id : $("#userid").val()};
+	
+	$.ajax({
+		url: "/member/idcheck",
+		type: "post",
+		data: query,
+		error: function(){
+			alert("ajax 통신에러");
+		},
+		success: function(data){
+			
+		}	
+	});
+});
+</script>
+
 </html>

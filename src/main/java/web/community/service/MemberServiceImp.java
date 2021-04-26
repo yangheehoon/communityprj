@@ -22,10 +22,16 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
+	public void ServiceIdCheck(String id) {
+		String check = memberdao.SelectId(id);
+		System.out.println(check);
+	}
+	
+	@Override
 	public void ServiceLogin() {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
+
+		
 }

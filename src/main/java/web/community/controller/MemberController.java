@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import web.community.service.MemberService;
 
 @Controller
+@RequestMapping("/member/")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberservice;
 	
-	@RequestMapping("/member/join")
+	@RequestMapping("join")
 	public String join(@RequestParam(value="id",required=false) String id,
 			@RequestParam(value="pw",required=false) String pw,
 			@RequestParam(value="nickname",required=false) String nickname,
@@ -28,7 +29,13 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	@RequestMapping("/member/login")
+	@RequestMapping("idcheck")
+	public void idcheck(@RequestParam(value="id") String id) {
+		System.out.println(id);
+		memberservice.ServiceIdCheck(id);		
+	}
+	
+	@RequestMapping("login")
 	public String login() {
 		
 			memberservice.ServiceLogin();
