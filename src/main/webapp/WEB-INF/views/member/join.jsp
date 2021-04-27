@@ -63,6 +63,8 @@ $("#idcheck").click(function(){
 	
 	var query = {id : $("#userid").val()};
 	
+	if($("#userid").val() != "" && IdCheckSpecial() == false){
+	
 	$.ajax({
 		url: "/member/idcheck",
 		type: "post",
@@ -71,10 +73,85 @@ $("#idcheck").click(function(){
 			alert("ajax 통신에러");
 		},
 		success: function(data){
-			
+			if(data=="possibleID"){
+				$("#msg").text("사용가능한 아이디입니다").css("color","blue").val("complete");
+			}else{
+				$("#msg").text("이미존재하는 아이디입니다")
+				.css("color","red").val("")
+			}
 		}	
 	});
+	
+	}else if($("#userid").val() == ""){
+		alert("사용하실 아이디를 입력해주세요");
+	}else if(IdCheckSpecial()==true){
+		alert("특수문자 또는  공백은 포함할 수 없습니다.");
+	}
 });
+
+$("#userid").focus(function(){
+	$("#msg").text("").val("");
+});
+
+
+function IdCheckSpecial() {  //아이디값 특수문자와 공백 체크
+	var pattern = /[`~!@#$%^&*|\\\'\";:\/?\s]/gi; 
+	
+	if(pattern.test(fm.id.value) == true) { 		
+			return true;
+	}else { 
+		    return false;
+	} 
+}
+
+function check() {
+	if (fm.id.value=="") {
+		alert("아이디를 입력해주세요");
+		return false;
+	}else if(idcheckSpecial()==true){
+		alert("특수문자 또는 공백은 포함할 수 없습니다");
+		return false;
+	}else if ($(".msg").val()=="") {
+		alert("아이디 중복검사를 해주세요");
+		return false;
+	}else if(fm.pw.value.length < 8){
+		alert("패스워드를 8자리 이상 입력해주세요");
+		return false;
+	}else if (fm.pw2.value=="") {
+		alert("패스워드 확인을 입력해주세요");
+		return false;
+	}else if(fm.pw.value!=fm.pw2.value){
+		alert("패스워드가 일치하지 않습니다");
+		return false;
+	}else if (fm.nickname.value=="") {
+		alert("닉네임을 입력해주세요");
+		return false;
+	}else if (fm.name.value=="") {
+		alert("이름을 입력해주세요");
+		return false;
+	}else if (fm.birth.value.length !=6) {
+		alert("생년월일 6자리를 입력해주세요");
+		return false;
+	}else if (isNaN(fm.birth.value)) {
+		alert("생년월일은 숫자만 입력할 수 있습니다");
+		return false;
+	}else if (fm.email.value=="") {
+		alert("이메일을 입력해주세요");
+		return false;
+	}else if (fm.gender.value=="성별") {
+		alert("성별을 선택해주세요");
+		return false;
+	}else if (fm.phone.value=="") {
+		alert("전화번호를 입력해주세요");
+		return false;
+	}else if (isNaN(fm.phone.value)) {
+		alert("전화번호는 숫자만 입력할 수 있습니다");
+		$("#ph").val(fm.phone.value.replace(/\-/g,""));
+		return false;
+	}
+		return true;
+}
+
 </script>
 
 </html>

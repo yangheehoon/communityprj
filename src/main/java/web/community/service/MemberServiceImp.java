@@ -22,9 +22,17 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public void ServiceIdCheck(String id) {
+	public boolean ServiceIdCheck(String id) {
 		String check = memberdao.SelectId(id);
+		
 		System.out.println(check);
+		
+		if(check==null) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 	@Override

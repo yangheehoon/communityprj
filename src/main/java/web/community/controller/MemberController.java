@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.community.service.MemberService;
 
@@ -29,10 +30,18 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	@ResponseBody
 	@RequestMapping("idcheck")
-	public void idcheck(@RequestParam(value="id") String id) {
+	public String idcheck(@RequestParam(value="id") String id) {
 		System.out.println(id);
-		memberservice.ServiceIdCheck(id);		
+		boolean result = memberservice.ServiceIdCheck(id);		
+		
+		if(result==true) {
+			return "possibleID"; 
+		}else {
+			return "impossibleID";
+		}
+
 	}
 	
 	@RequestMapping("login")
