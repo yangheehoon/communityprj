@@ -1,5 +1,11 @@
 package web.community.service;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import web.community.model.Member;
+
 public interface MemberService {
 
 	void ServiceJoin(String id, String pw, String nickname, String name, int birth, String email, String gender,
@@ -7,7 +13,7 @@ public interface MemberService {
 
 	boolean ServiceIdCheck(String id);
 	
-	void ServiceLogin();
+	String ServiceLogin(String id, String pw, HttpSession session);
 
 
 }

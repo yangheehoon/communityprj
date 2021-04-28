@@ -1,5 +1,7 @@
 package web.community.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,10 @@ public class MemberController {
 		
 			memberservice.ServiceJoin(id, pw, nickname, name, birth, email, gender, phone);
 	
+			if(id!=null&&pw!=null&&nickname!=null&&name!=null&&birth!=1&&email!=null&&gender!=null&&phone!=null) {
+				return "member/success";
+			}				
+			
 		return "member/join";
 	}
 	
@@ -46,10 +52,20 @@ public class MemberController {
 	
 	@RequestMapping("login")
 	public String login() {
-		
-			memberservice.ServiceLogin();
-		
 		return "member/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping("logincheck")
+	public String LoginCheck(@RequestParam("id") String id,
+			@RequestParam("pw") String pw,
+			HttpSession session) {
+			
+			System.out.println(id);
+			System.out.println(pw);
+		
+		return memberservice.ServiceLogin(id,pw,session);
+		
 	}
 	
 	

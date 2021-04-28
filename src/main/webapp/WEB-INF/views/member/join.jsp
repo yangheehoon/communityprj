@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 </head>
 <body>
-<form action="/member/join" name="fm" onsubmit="return check()" style="width: 470px; padding: 30px; margin-left: auto; margin-right: auto;">
+<form action="/member/join" name="fm" method="post" onsubmit="return check()" style="width: 470px; padding: 30px; margin-left: auto; margin-right: auto;">
 	
 	<div class="mb-3">
 		<label class="col-form-label-sm fw-bolder" style="width: 100%;">아이디</label>
@@ -108,10 +108,10 @@ function check() {
 	if (fm.id.value=="") {
 		alert("아이디를 입력해주세요");
 		return false;
-	}else if(idcheckSpecial()==true){
+	}else if(IdCheckSpecial()==true){
 		alert("특수문자 또는 공백은 포함할 수 없습니다");
 		return false;
-	}else if ($(".msg").val()=="") {
+	}else if ($("#msg").val()=="") {
 		alert("아이디 중복검사를 해주세요");
 		return false;
 	}else if(fm.pw.value.length < 8){

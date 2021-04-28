@@ -1,9 +1,12 @@
 package web.community.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.community.dao.MemberDao;
+import web.community.model.Member;
 
 @Service
 public class MemberServiceImp implements MemberService{
@@ -36,10 +39,22 @@ public class MemberServiceImp implements MemberService{
 	}
 	
 	@Override
-	public void ServiceLogin() {
-		// TODO Auto-generated method stub
+	public String ServiceLogin(String id, String pw, HttpSession session) {
 		
+		String check = memberdao.SelectId(id);
+		String check2 = memberdao.SelectLoginCheck(id,pw);
+		System.out.println(check);
+		System.out.println(check2);
+		
+		if(check==null) {
+			return "IdNone";
+		}else if(check2==null) {
+			return "PwNone";
+		}else {
+			Member member = memberdao.SelectMember(id,pw);
+			session.setAttribute("member", member);
+			return "Success";
+		}
 	}
-
 		
 }
