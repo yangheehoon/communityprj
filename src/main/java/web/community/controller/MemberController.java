@@ -68,5 +68,11 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("logout")
+	public String Logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/home";
+	}
 	
 }
