@@ -12,14 +12,14 @@ public class Member {
 	String gender;
 	String phone;
 	Date regdate;
-	String pro_file;
+	String img;
 	
 	public Member() {
 		
 	}
 	
 	public Member(String id, String pw, String nickname, String name, int birth, String email, String gender,
-			String phone, Date regdate, String pro_file) {
+			String phone, Date regdate, String img) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -30,7 +30,7 @@ public class Member {
 		this.gender = gender;
 		this.phone = phone;
 		this.regdate = regdate;
-		this.pro_file = pro_file;
+		this.img = img;
 	}
 
 	public String getId() {
@@ -105,19 +105,19 @@ public class Member {
 		this.regdate = regdate;
 	}
 
-	public String getPro_file() {
-		return pro_file;
+	public String getImg() {
+		return img;
 	}
 
-	public void setPro_file(String pro_file) {
-		this.pro_file = pro_file;
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pw=" + pw + ", nickname=" + nickname + ", name=" + name + ", birth=" + birth
 				+ ", email=" + email + ", gender=" + gender + ", phone=" + phone + ", regdate=" + regdate
-				+ ", pro_file=" + pro_file + "]";
+				+ ", img=" + img + "]";
 	}
 
 }
