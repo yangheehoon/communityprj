@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import web.community.model.Member;
 
@@ -24,5 +25,8 @@ public interface MemberDao {
 
 	@Select("select * from member where id=#{id} and pw=#{pw}")
 	Member SelectMember(String id, String pw);
+
+	@Update("update member set nickname=#{nickname}, email=#{email}, phone=#{phone}, img=#{img} where id=#{id}")
+	void UpdateMember(String id, String nickname, String email, String phone, String img);
 	
 }

@@ -56,5 +56,11 @@ public class MemberServiceImp implements MemberService{
 			return "Success";
 		}
 	}
+
+	@Override
+	public void ServiceChangeMember(String id, String nickname, String email, String phone, String img) {
 		
+		memberdao.UpdateMember(id,nickname,email,phone,img);
+	}
+	
 }

@@ -15,5 +15,7 @@ public interface MemberService {
 	
 	String ServiceLogin(String id, String pw, HttpSession session);
 
+	void ServiceChangeMember(String id, String nickname, String email, String phone, String img);
+
 
 }

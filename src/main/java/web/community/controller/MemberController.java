@@ -83,4 +83,15 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
+	@RequestMapping("change_member")
+	public String ChangeMember(@RequestParam(value="id",required=false)String id,
+			@RequestParam(value="nickname",required=false)String nickname,
+			@RequestParam(value="email",required=false)String email,
+			@RequestParam(value="phone",required=false)String phone,
+			@RequestParam(value="img",required=false)String img) {
+		
+		memberservice.ServiceChangeMember(id,nickname,email,phone,img);
+		
+		return "member/change_member";
+	}
 }
