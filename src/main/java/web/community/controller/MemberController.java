@@ -7,14 +7,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-import web.community.model.Member;
 import web.community.service.MemberService;
 
 @Controller
@@ -97,23 +97,24 @@ public class MemberController {
 			@RequestParam(value="nickname",required=false)String nickname,
 			@RequestParam(value="email",required=false)String email,
 			@RequestParam(value="phone",required=false)String phone,
-			@RequestParam(value="img",required=false)MultipartFile img,
+			@RequestParam(value="img_file",required=false)MultipartFile img_file,
 			HttpSession session) throws IllegalStateException, IOException {
 		
-		System.out.println(img);
+		System.out.println(img_file);
 		
-		if(nickname!=null&&email!=null&&phone!=null&&id!=null&&pw!=null&&img.isEmpty()) {			
+		if(nickname!=null&&email!=null&&phone!=null&&id!=null&&pw!=null&&img_file.isEmpty()) {			
 			memberservice.ServiceChangeMember(id,pw,nickname,email,phone,session);
 			return "redirect:/member/mypage";
 			
-		}else if(nickname!=null&&email!=null&&phone!=null&&id!=null&&pw!=null&&!img.isEmpty()){
+		}else if(nickname!=null&&email!=null&&phone!=null&&id!=null&&pw!=null&&!img_file.isEmpty()){
 			
-			String filename = img.getOriginalFilename();		
-			String realpath= ctx.getRealPath("/img/member");
+			String filename = img_file.getOriginalFilename();		
+//			String realpath= ctx.getRealPath("/static/img/member");
+			String realpath= new ClassPathResource("/static/img/member").getFile().getAbsolutePath();
 			System.out.println(realpath);
 			realpath += File.separator + filename;
 			File savefile = new File(realpath);
-			img.transferTo(savefile);
+			img_file.transferTo(savefile);
 			String img_name= filename;
 			
 			memberservice.ServiceChangeMember2(id,pw,nickname,email,phone,img_name,session);

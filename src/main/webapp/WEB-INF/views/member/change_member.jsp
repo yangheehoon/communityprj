@@ -8,13 +8,14 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<form action="" method="post" name="fm" enctype="multipart/form-data" onsubmit="return CheckInfo()" style="width: 470px; padding: 30px; padding-top: 0px; margin-left: auto; margin-right: auto;">
+<form action="" method="post" name="fm" enctype="multipart/form-data" onsubmit="return CheckInfo();" style="width: 470px; padding: 30px; padding-top: 0px; margin-left: auto; margin-right: auto;">
   <input type="hidden" name="id" value="${member.id }">
+  <input type="hidden" name="pw" value="${member.pw }">
   	<div class="mb-3" style="text-align: center;">
 		<img src="/img/member/${member.img}" id="my_img" style="width: 200px; height: 200px; border: 1px solid #dee2e6;">		
 		<div class="filebox mt-2">
   			<label for="profileImg" class="btn btn-primary btn-sm">이미지 변경</label>
-			<input type="file" id="profileImg" name="profileImg" onchange="fileUpload(this);">
+			<input type="file" id="profileImg" name="img_file" onchange="fileUpload(this);">
 		</div>
 	</div>		
   	<div class="mb-3">
@@ -34,7 +35,7 @@
 </body>
 <script type="text/javascript">
 function CheckInfo(){
-	if(fm.nick.value==""){
+	if(fm.nickname.value==""){
 		alert("닉네임을 입력해주세요.");
 		return false;
 	}else if(fm.email.value==""){
@@ -64,6 +65,7 @@ function fileUpload(f) {
 
 	}
 </script>
+
 <style type="text/css">
 
 .filebox input[type="file"] {
