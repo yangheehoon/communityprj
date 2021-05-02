@@ -19,7 +19,7 @@
 	</div>		
   	<div class="mb-3">
 		<label class="form-label fw-bolder">닉네임</label>
-		<input type="text" name="nick" value="${member.nickname }" class="form-control">
+		<input type="text" name="nickname" value="${member.nickname }" class="form-control">
 	</div>
 	<div class="mb-3">
 		<label class="form-label fw-bolder">이메일</label>

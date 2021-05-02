@@ -26,7 +26,10 @@ public interface MemberDao {
 	@Select("select * from member where id=#{id} and pw=#{pw}")
 	Member SelectMember(String id, String pw);
 
-	@Update("update member set nickname=#{nickname}, email=#{email}, phone=#{phone}, img=#{img} where id=#{id}")
-	void UpdateMember(String id, String nickname, String email, String phone, String img);
+	@Update("update member set nickname=#{nickname}, email=#{email}, phone=#{phone} where id=#{id}")
+	void UpdateMember(String id, String nickname, String email, String phone);
+
+	@Update("update member set nickname=#{nickname}, email=#{email}, phone=#{phone}, img=#{img_name} where id=#{id}")
+	void UpdateMember2(String id, String nickname, String email, String phone, String img_name);
 	
 }

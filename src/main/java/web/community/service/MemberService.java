@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import web.community.model.Member;
 
 public interface MemberService {
@@ -15,7 +17,9 @@ public interface MemberService {
 	
 	String ServiceLogin(String id, String pw, HttpSession session);
 
-	void ServiceChangeMember(String id, String nickname, String email, String phone, String img);
+	void ServiceChangeMember(String id, String pw, String nickname, String email, String phone, HttpSession session);
+
+	void ServiceChangeMember2(String id, String pw, String nickname, String email, String phone, String img_name, HttpSession session);
 
 
 }
