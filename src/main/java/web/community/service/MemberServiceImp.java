@@ -76,6 +76,13 @@ public class MemberServiceImp implements MemberService{
 		session.setAttribute("member", member);
 	}
 
+	@Override
+	public void ServiceChangePw(String id, String pw) {
+		
+		memberdao.UpdatePw(id,pw);
+		
+	}
+
 
 	
 }

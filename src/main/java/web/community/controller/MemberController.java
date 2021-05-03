@@ -123,4 +123,15 @@ public class MemberController {
 		
 		return "member/change_member";
 	}
+	
+	@RequestMapping("change_pw")
+	public String ChangePw(@RequestParam(value="id",required=false) String id,
+			@RequestParam(value="newpw",required=false) String pw) {
+		
+		if(id!=null&&pw!=null) {
+			memberservice.ServiceChangePw(id,pw);
+			return "redirect:/member/logout";
+		}
+		return "member/change_pw";
+	}
 }

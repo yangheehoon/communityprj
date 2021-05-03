@@ -31,5 +31,8 @@ public interface MemberDao {
 
 	@Update("update member set nickname=#{nickname}, email=#{email}, phone=#{phone}, img=#{img_name} where id=#{id}")
 	void UpdateMember2(String id, String nickname, String email, String phone, String img_name);
+
+	@Update("update member set pw=#{pw} where id=#{id}")
+	void UpdatePw(String id, String pw);
 	
 }
