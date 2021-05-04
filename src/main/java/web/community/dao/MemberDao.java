@@ -1,7 +1,6 @@
 package web.community.dao;
 
-import java.util.List;
-
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -34,5 +33,8 @@ public interface MemberDao {
 
 	@Update("update member set pw=#{pw} where id=#{id}")
 	void UpdatePw(String id, String pw);
+
+	@Delete("delete from member where id=#{id}")
+	void DeleteMember(String id);
 	
 }

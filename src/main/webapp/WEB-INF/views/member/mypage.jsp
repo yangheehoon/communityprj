@@ -55,7 +55,7 @@ function ChangePw(){
 	location.href = "change_pw";
 };
 function MemberDel(){
-	location.href = "member_del";
+	location.href = "delete_member";
 };
 </script>
 </html>

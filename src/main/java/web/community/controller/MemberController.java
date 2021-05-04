@@ -134,4 +134,16 @@ public class MemberController {
 		}
 		return "member/change_pw";
 	}
+	
+	@RequestMapping("delete_member")
+	public String DeleteMember(@RequestParam(value="id",required=false)String id) {
+		
+		if(id!=null) {
+			memberservice.ServiceDeleteMember(id);
+			return "redirect:/member/logout";
+		}
+		return "member/delete_member";
+	}
+		
+	
 }

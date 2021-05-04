@@ -83,6 +83,13 @@ public class MemberServiceImp implements MemberService{
 		
 	}
 
+	@Override
+	public void ServiceDeleteMember(String id) {
+		
+		memberdao.DeleteMember(id);
+		
+	}
+
 
 	
 }

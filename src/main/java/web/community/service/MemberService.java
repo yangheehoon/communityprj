@@ -23,5 +23,7 @@ public interface MemberService {
 
 	void ServiceChangePw(String id, String pw);
 
+	void ServiceDeleteMember(String id);
+
 
 }
