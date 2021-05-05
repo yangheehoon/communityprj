@@ -144,6 +144,10 @@ public class MemberController {
 		}
 		return "member/delete_member";
 	}
-		
+	
+	@RequestMapping("goodbye")
+	public String GoodBye() {
+		return "member/goodbye";
+	}
 	
 }
