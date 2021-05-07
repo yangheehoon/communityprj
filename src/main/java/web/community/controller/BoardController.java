@@ -22,6 +22,8 @@ public class BoardController {
 		
 		List<Board> list = boardservice.ServiceList();
 		
+		System.out.println(list.toString()+"23");
+		
 		model.addAttribute("list", list);
 		
 		return "board/list";	

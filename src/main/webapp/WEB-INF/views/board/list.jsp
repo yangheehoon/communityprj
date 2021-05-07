@@ -10,9 +10,26 @@
 <title>Insert title here</title>
 </head>
 <body>
+<br>
+<h3 style="text-align: center;">게시판 목록 </h3>
 
-	<table class="table table-sm">
-	  <thead class="table-dark">
+<div style="width: 1000px; padding: 30px; margin-left: auto; margin-right: auto;">	
+	
+<fieldset class="mb-3">		
+	<form action="" style="text-align:right; margin-right: 10px;">		
+		<label>검색분류</label> 
+		<select name="f">
+			<option ${(param.f == "title") ? "selected":""} value="title">제목</option>
+			<option ${(param.f == "writer_id") ? "selected":""} value="writer_id">작성자</option>
+		</select>
+		<label>검색어</label> 
+		<input type="text" name="q" value="${param.q}" /> 
+		<input type="submit" class="btn btn-primary btn-sm" style="vertical-align: 0px;" value="검색" />    	
+    </form>    		
+</fieldset>  
+	
+	<table class="table table-sm" >
+	  <thead class="table-secondary">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -33,6 +50,49 @@
 		</c:forEach>
 
 	</table>
+	
+	<!-- 현재페이지 -->
+	<c:set var="page"  value="${(empty param.p) ? 1:param.p }" />
+	<c:set var="startpage" value="${page-(page-1)%5 }"/>
+	<c:set var="lastpage" value="${fn:substringBefore(Math.ceil(count/10),'.' )}"></c:set>
+	
+	<div class="mb-2">
+		<span style="margin-left: 10px; color: gray;">${page}/${lastpage} pages</span>			
+    	<input type="hidden" id="sion" value="${sessionScope.member}">
+		<a href="board_add" ><button style="float: right; margin-right: 20px;" class="btn btn-primary btn-sm" onclick="logincheck()">게시글 작성</button></a>
+	</div>
+	
+	
+	<!-- 페이지리스트 -->
+	<ul style="list-style: none; text-align: center; padding: 0px; margin: 0px;">		
+	<!-- 이전페이지 -->		
+		<c:if test="${startpage > 5}">
+			<li style="display:inline-block;"><a href="?p=${startpage-1 }&f=${param.f}&q=${param.q}">이전</a></li>
+		</c:if>
+	
+		 	<c:if test="${startpage+4 >= lastpage}">
+				<c:forEach var="i" begin="0" end="${(lastpage==0) ? 0 : lastpage - startpage}">
+				    <li style="display:inline-block; margin-left: 15px;"><a style="color: ${((startpage+i)==page) ? 'black' : 'gray'};" href="?p=${startpage+i}&f=${param.f}&q=${param.q}" >${startpage+i }</a></li>
+		    	</c:forEach>
+		    </c:if>  
+		    <c:if test="${startpage+4 < lastpage}">
+		    	<c:forEach var="i" begin="0" end="4">
+				    <li style="display:inline-block; margin-left: 15px;"><a style="color: ${((startpage+i)==page) ? 'black' : 'gray'}; " href="?p=${startpage+i}&f=${param.f}&q=${param.q}" >${startpage+i }</a></li>
+		    	</c:forEach>
+		    </c:if>
+	<!-- 다음페이지 -->
+		<c:if test="${startpage+5 <= lastpage }">
+			<li style="display:inline-block; margin-left: 15px;"><a href="?p=${startpage+5}&f=${param.f}&q=${param.q}">다음</a></li>
+		</c:if>	
+	</ul>
+	</div>
+<script type="text/javascript">
+function logincheck(){
+	if(document.getElementById("sion").value==""){
+		alert("로그인 후 이용해주세요");
+	}
+}
 
+</script>
 </body>
 </html>
