@@ -2,6 +2,8 @@ package web.community.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Board {
 
 	private int num;
@@ -10,6 +12,7 @@ public class Board {
 	private String writer_id;
 	private String files;
 	private String hit;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date regdate;
 	private int cmt_count;
 	

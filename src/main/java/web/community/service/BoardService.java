@@ -7,4 +7,6 @@ import web.community.model.Board;
 public interface BoardService {
 	
 	List<Board> ServiceList();
+
+	Board ServiceDetail(int num);
 }

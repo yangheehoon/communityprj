@@ -22,4 +22,10 @@ public class BoardServiceImp implements BoardService{
 		
 	}
 
+	@Override
+	public Board ServiceDetail(int num) {
+		// TODO Auto-generated method stub
+		return boarddao.SelectDetail(num);
+	}
+
 }

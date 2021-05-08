@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import web.community.model.Board;
 import web.community.service.BoardService;
@@ -22,10 +23,19 @@ public class BoardController {
 		
 		List<Board> list = boardservice.ServiceList();
 		
-		System.out.println(list.toString()+"23");
-		
 		model.addAttribute("list", list);
 		
 		return "board/list";	
+	}
+	
+	@RequestMapping("detail")
+	public String BoardDetail(Model model,
+			@RequestParam("num") int num) {
+		
+		Board detail = boardservice.ServiceDetail(num);
+		
+		model.addAttribute("detail", detail);
+		
+		return "board/detail";
 	}
 }

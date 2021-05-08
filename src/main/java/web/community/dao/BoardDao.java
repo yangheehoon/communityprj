@@ -12,4 +12,7 @@ public interface BoardDao {
 
 	@Select("select * from board")
 	List<Board> SelectList();
+
+	@Select("select * from board where num=#{num}")
+	Board SelectDetail(int num);
 }
