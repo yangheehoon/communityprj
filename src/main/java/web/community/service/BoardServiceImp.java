@@ -28,4 +28,10 @@ public class BoardServiceImp implements BoardService{
 		return boarddao.SelectDetail(num);
 	}
 
+	@Override
+	public void ServiceAddBoard(String title, String content, String writer_id, String filesname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

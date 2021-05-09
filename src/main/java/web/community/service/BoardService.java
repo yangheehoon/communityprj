@@ -9,4 +9,6 @@ public interface BoardService {
 	List<Board> ServiceList();
 
 	Board ServiceDetail(int num);
+
+	void ServiceAddBoard(String title, String content, String writer_id, String filesname);
 }
