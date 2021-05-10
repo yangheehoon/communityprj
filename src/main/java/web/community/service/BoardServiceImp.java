@@ -30,7 +30,7 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public void ServiceAddBoard(String title, String content, String writer_id, String filesname) {
-		// TODO Auto-generated method stub
+		boarddao.InsertBoard(title,content,writer_id,filesname);
 		
 	}
 

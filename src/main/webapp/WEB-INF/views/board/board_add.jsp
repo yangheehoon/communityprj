@@ -21,6 +21,7 @@ function check() {
 </head>
 
 <body>
+<br>
 	<form action="board_add2" method="post" name="fm" enctype="multipart/form-data" onsubmit="return check()">
 		<table style="margin-left: auto; margin-right: auto;">
 			<tr>
