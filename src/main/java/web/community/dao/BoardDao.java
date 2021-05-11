@@ -11,7 +11,7 @@ import web.community.model.Board;
 @Mapper
 public interface BoardDao {
 
-	@Select("select * from board")
+	@Select("select * from board order by regdate desc")
 	List<Board> SelectList();
 
 	@Select("select * from board where num=#{num}")

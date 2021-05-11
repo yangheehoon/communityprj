@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -44,8 +46,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board_add")
-	public String AddBoard() {
-		
+	public String AddBoard(HttpSession session) {
+		if(session.getAttribute("member")==null) {
+			return "redirect:/member/login";
+		}
 		return "board/board_add";
 	}
 	
@@ -80,6 +84,6 @@ public class BoardController {
 			boardservice.ServiceAddBoard(title,content,writer_id,filesname);			
 		}
 		
-		return "board/list";
+		return "redirect:/board/list";
 	}
 }
