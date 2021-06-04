@@ -67,7 +67,7 @@ public class BoardController {
 			}			
 			String file_name = file.getOriginalFilename();
 			builder.append(file_name+",");
-			String realpath = new ClassPathResource("/static/img/board").getFile().getAbsolutePath();
+			String realpath = new ClassPathResource("/static/board").getFile().getAbsolutePath();
 			realpath += realpath+File.separator+file_name;
 			File savefile = new File(realpath);
 			file.transferTo(savefile);

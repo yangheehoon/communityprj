@@ -11,14 +11,29 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TtsController {
-
+		
 	@RequestMapping("/tts")
 	public String tts() {
+		
+		return "tts/tts";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/tts/action")
+	public String Action(@RequestParam("txt_content") String txt_content) {
+		
+		String path=null;
 		
 		try {
 			URL url = new URL("https://kakaoi-newtone-openapi.kakao.com/v1/synthesize");					
@@ -31,7 +46,7 @@ public class TtsController {
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
 			
-			String data = "<speak>" +"test"+ "</speak>";
+			String data = "<speak>" + txt_content + "</speak>";
 					    
 			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
             dos.writeBytes(data);
@@ -44,16 +59,24 @@ public class TtsController {
                 InputStream is = conn.getInputStream();
                 int read = 0;
                 byte[] bytes = new byte[1024];
+                
+                System.out.println(is.read(bytes));
                 // 랜덤한 이름으로 mp3 파일 생성
-                String tempname = Long.valueOf(new Date().getTime()).toString();
+                String tempname = Long.valueOf(new Date().getTime()).toString()+".mp3";
                 System.out.println(tempname);
-                File f = new File(tempname + ".mp3");
+                String realpath = new ClassPathResource("/static/mp3").getFile().getAbsolutePath();
+                //String realpath = "/community/src/main/resources/static/mp3";
+                System.out.println(realpath);
+                realpath += File.separator+tempname;
+                System.out.println(realpath);
+                File f = new File(realpath);
                 f.createNewFile();
                 OutputStream os = new FileOutputStream(f);
                 while ((read =is.read(bytes)) != -1) {
                     os.write(bytes, 0, read);
                 }
                 is.close();
+                path = "/mp3/"+tempname;
             } else {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
                 String inputLine;
@@ -67,9 +90,9 @@ public class TtsController {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-		return "tts/tts";
-
+		
+		return path;
+	}
  			
 /*		    OutputStreamWriter os = new OutputStreamWriter(conn.getOutputStream());
 		    
@@ -115,5 +138,4 @@ public class TtsController {
 		return answer;
 */
 		
-	}
 }

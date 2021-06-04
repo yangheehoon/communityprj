@@ -5,6 +5,7 @@
 <html>
 <head>
 
+<link rel="shortcut icon" href="/img/home/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/footer.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
 <script src="/bootstrap/js/bootstrap.js"></script>
