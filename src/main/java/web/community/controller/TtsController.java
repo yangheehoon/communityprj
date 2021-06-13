@@ -1,19 +1,16 @@
 package web.community.controller;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
-import javax.servlet.ServletContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,13 +44,14 @@ public class TtsController {
 			conn.setDoOutput(true);
 			
 			String data = "<speak>" + txt_content + "</speak>";
-					    
-			DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            dos.writeBytes(data);
-            dos.flush();
-            dos.close();
-            
+						
+			OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
+            osw.write(data);
+            osw.flush();
+            osw.close();			
+			
             int responseCode = conn.getResponseCode();
+            System.out.println(responseCode);
             BufferedReader br;
             if(responseCode==200) { // 정상 호출
                 InputStream is = conn.getInputStream();
